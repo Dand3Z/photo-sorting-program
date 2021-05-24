@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.time.ZoneId;
@@ -22,8 +20,6 @@ public class CatalogAnalyzer {
     private final String CATALOG_PATH;
     private Map<String, Integer> datesMap; //
 
-    //private Map<String, SingleFileCopy> map;
-
     private static DateTimeFormatter formatter = DateTimeFormatter
                                 .ofPattern("yyyy-MM-dd")
                                 .withLocale( Locale.getDefault() )
@@ -31,8 +27,7 @@ public class CatalogAnalyzer {
 
     public CatalogAnalyzer(String catalogPath) {
         this.CATALOG_PATH = catalogPath;
-        this.datesMap = new HashMap<>();  //
-        //this.map = new HashMap<>();
+        this.datesMap = new HashMap<>();
     }
 
     public void analysis() throws InterruptedException {
@@ -63,16 +58,19 @@ public class CatalogAnalyzer {
 //                map.get(date).setFileName(f.getName());
 //                map.get(date).join();
 //                map.get(date).start();
-
             }
 
-            Path copiedPath = Paths.get(CATALOG_PATH + SEPARATOR + date + SEPARATOR + datesMap.get(date)
-                    + ".jpg");
+            String copiedPath = CATALOG_PATH + SEPARATOR + date;
+//
+            new SingleFileCopy(f.getPath(), copiedPath,datesMap.get(date)).start();
 
-            try {
-                Files.copy(sourcePath, copiedPath, StandardCopyOption.REPLACE_EXISTING);
-            }
-            catch (IOException e) { e.getMessage(); }
+//            Path copiedPath = Paths.get(CATALOG_PATH + SEPARATOR + date + SEPARATOR + datesMap.get(date)
+//                    + ".jpg");
+//
+//            try {
+//                Files.copy(sourcePath, copiedPath, StandardCopyOption.REPLACE_EXISTING);
+//            }
+//            catch (IOException e) { e.getMessage(); }
         }
     }
 

@@ -17,8 +17,12 @@ import java.util.Map;
 public class CatalogAnalyzer {
 
     public static final String SEPARATOR = File.separator;
+    private static final String FILE_EXTENSION = ".jpg";
+
     private final String CATALOG_PATH;
-    private Map<String, Integer> datesMap;
+    private Map<String, Integer> datesMap; //
+
+    //private Map<String, SingleFileCopy> map;
 
     private static DateTimeFormatter formatter = DateTimeFormatter
                                 .ofPattern("yyyy-MM-dd")
@@ -27,12 +31,13 @@ public class CatalogAnalyzer {
 
     public CatalogAnalyzer(String catalogPath) {
         this.CATALOG_PATH = catalogPath;
-        this.datesMap = new HashMap<>();
+        this.datesMap = new HashMap<>();  //
+        //this.map = new HashMap<>();
     }
 
-    public void analysis(){
+    public void analysis() throws InterruptedException {
         File folder = new File(CATALOG_PATH);
-        File[] listOfFiles = folder.listFiles((dir, name) -> name.endsWith(".jpg"));
+        File[] listOfFiles = folder.listFiles((dir, name) -> name.endsWith(FILE_EXTENSION));
 
         for (File f: listOfFiles){
             Path sourcePath = f.toPath();
@@ -49,9 +54,16 @@ public class CatalogAnalyzer {
             if (!datesMap.containsKey(date)) {
                 datesMap.put(date, 1);
                 fileDestination.mkdir();
+//                map.put(date, new SingleFileCopy(CATALOG_PATH,CATALOG_PATH+SEPARATOR+date));
+//                map.get(date).setFileName(f.getName());
+//                map.get(date).start();
             } else {
                 Integer currentValue = datesMap.get(date);
                 datesMap.put(date, currentValue + 1);
+//                map.get(date).setFileName(f.getName());
+//                map.get(date).join();
+//                map.get(date).start();
+
             }
 
             Path copiedPath = Paths.get(CATALOG_PATH + SEPARATOR + date + SEPARATOR + datesMap.get(date)

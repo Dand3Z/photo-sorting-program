@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the path to the directory to be sorted: ");
         String directoryPath = "";

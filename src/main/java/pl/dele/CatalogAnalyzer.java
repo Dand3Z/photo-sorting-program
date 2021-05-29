@@ -49,28 +49,14 @@ public class CatalogAnalyzer {
             if (!datesMap.containsKey(date)) {
                 datesMap.put(date, 1);
                 fileDestination.mkdir();
-//                map.put(date, new SingleFileCopy(CATALOG_PATH,CATALOG_PATH+SEPARATOR+date));
-//                map.get(date).setFileName(f.getName());
-//                map.get(date).start();
             } else {
                 Integer currentValue = datesMap.get(date);
                 datesMap.put(date, currentValue + 1);
-//                map.get(date).setFileName(f.getName());
-//                map.get(date).join();
-//                map.get(date).start();
+
             }
 
             String copiedPath = CATALOG_PATH + SEPARATOR + date;
-//
             new SingleFileCopy(f.getPath(), copiedPath,datesMap.get(date)).start();
-
-//            Path copiedPath = Paths.get(CATALOG_PATH + SEPARATOR + date + SEPARATOR + datesMap.get(date)
-//                    + ".jpg");
-//
-//            try {
-//                Files.copy(sourcePath, copiedPath, StandardCopyOption.REPLACE_EXISTING);
-//            }
-//            catch (IOException e) { e.getMessage(); }
         }
     }
 

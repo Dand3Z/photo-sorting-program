@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CatalogAnalyzer {
 
@@ -31,6 +33,8 @@ public class CatalogAnalyzer {
     }
 
     public void analysis() throws InterruptedException {
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+
         File folder = new File(CATALOG_PATH);
         File[] listOfFiles = folder.listFiles((dir, name) -> name.endsWith(FILE_EXTENSION));
 
@@ -56,8 +60,9 @@ public class CatalogAnalyzer {
             }
 
             String copiedPath = CATALOG_PATH + SEPARATOR + date;
-            new SingleFileCopy(f.getPath(), copiedPath,datesMap.get(date)).start();
+            executor.execute(new SingleFileCopy(f.getPath(), copiedPath, datesMap.get(date)));
         }
+        executor.shutdown();
     }
 
 }

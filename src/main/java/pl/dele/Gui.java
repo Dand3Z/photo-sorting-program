@@ -27,17 +27,21 @@ public class Gui {
 
     private void createWindow() {
         frame = new JFrame("Photo-sorting-program");
+        frame.setLayout(new FlowLayout());
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(470, 200);
+        frame.setSize(500, 200);
         frame.setLocationRelativeTo(null);
         frame.add(panel);
 
         createTitleLabel();
 
-        createJFileChooser(SOURCE);
-        createJFileChooser(DESTINATION);
+        JPanel corePanel = new JPanel();
+        corePanel.setLayout(new GridLayout(2,3));
+        createJFileChooser(SOURCE, corePanel);
+        createJFileChooser(DESTINATION, corePanel);
+        frame.add(corePanel);
 
         frame.setResizable(false);
         frame.setVisible(true);
@@ -49,7 +53,7 @@ public class Gui {
         panel.add(titleLabel);
     }
 
-    private void createJFileChooser(String kind) {
+    private void createJFileChooser(String kind, JPanel panel) {
 
         JLabel kindLabel = new JLabel(kind +" directory: ");
         JButton button = new JButton(kind);
@@ -65,9 +69,7 @@ public class Gui {
                     File file = fileChooser.getSelectedFile();
                     if (kind == SOURCE) srcDirectoryPath = file.getPath();
                     else if (kind == DESTINATION) dstDirectoryPath = file.getPath();
-                    selectedFolderLabel.setText("Folder Selected: " + file.getName());
-                }else{
-                    selectedFolderLabel.setText("Open command canceled");
+                    selectedFolderLabel.setText(file.getName());
                 }
             }
         });

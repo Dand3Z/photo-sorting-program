@@ -18,6 +18,7 @@ public class Gui {
     private JPanel fileChooserPanel;
     private JPanel threadPanel;
     private JPanel executePanel;
+    private JLabel finishedLabel;
 
     private String srcDirectoryPath = null;
     private String dstDirectoryPath = null;
@@ -69,7 +70,7 @@ public class Gui {
                 CatalogAnalyzer catalogAnalyzer = new CatalogAnalyzer(srcDirectoryPath, dstDirectoryPath, threadAmount);
                 try {
                     catalogAnalyzer.analysis();
-                    while (!catalogAnalyzer.isExecutorShutdown());
+                    while (!catalogAnalyzer.isExecutorTerminated());
                     finishedPanel();
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
@@ -81,9 +82,11 @@ public class Gui {
     }
 
     private void finishedPanel(){
-        JLabel label = new JLabel("Process finished");
-        label.setForeground(Color.GREEN);
-        frame.add(label);
+        if (finishedLabel == null) {
+            finishedLabel = new JLabel("Process finished");
+            frame.add(finishedLabel);
+            finishedLabel.setForeground(Color.GREEN);
+        }
         frame.setVisible(true);
     }
 

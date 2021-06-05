@@ -70,8 +70,8 @@ public class CatalogAnalyzer {
         executor.shutdown();
     }
 
-    public boolean isExecutorShutdown(){
-        return executor.isShutdown();
+    public boolean isExecutorTerminated(){
+        return executor.isTerminated();
     }
 
 }

@@ -48,5 +48,4 @@ Thumbs.db
 bin/
 out/
 target/
-photos/
 .vscode/launch.json

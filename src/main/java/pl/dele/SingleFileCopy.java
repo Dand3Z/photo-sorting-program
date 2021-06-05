@@ -30,6 +30,8 @@ public class SingleFileCopy extends Thread {
      * @param number
      */
     public SingleFileCopy(String SOURCE_FILE_PATH, String DESTINATION_DIRECTORY_PATH, int number){
+        if (SOURCE_FILE_PATH == null || DESTINATION_DIRECTORY_PATH == null || number < 0)
+            throw new IllegalArgumentException();
         this.SOURCE_FILE_PATH = SOURCE_FILE_PATH;
         this.DESTINATION_DIRECTORY_PATH = DESTINATION_DIRECTORY_PATH;
         this.number = number;

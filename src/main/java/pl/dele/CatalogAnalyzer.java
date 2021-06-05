@@ -54,6 +54,8 @@ public class CatalogAnalyzer {
      * @param threadAmount
      */
     public CatalogAnalyzer(String srcCatalogPath, String dstCatalogPath, int threadAmount) {
+        if (srcCatalogPath.isBlank() || dstCatalogPath.isBlank() || threadAmount < 0)
+            throw new IllegalArgumentException();
         this.SRC_CATALOG_PATH = srcCatalogPath;
         this.DST_CATALOG_PATH = dstCatalogPath;
         this.THREAD_AMOUNT = threadAmount;

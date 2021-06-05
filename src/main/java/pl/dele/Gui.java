@@ -90,6 +90,7 @@ public class Gui {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (srcDirectoryPath == null || dstDirectoryPath == null || threadAmount < 0) return;
                 CatalogAnalyzer catalogAnalyzer = new CatalogAnalyzer(srcDirectoryPath, dstDirectoryPath, threadAmount);
                 try {
                     catalogAnalyzer.analysis();

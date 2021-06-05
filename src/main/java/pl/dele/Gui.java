@@ -10,10 +10,6 @@ import java.io.File;
 
 public class Gui {
 
-    public static void main(String[] args) {
-        new Gui();
-    }
-
     public static final String SOURCE = "Source";
     public static final String DESTINATION = "Destination";
 
@@ -67,7 +63,28 @@ public class Gui {
         executePanel.setLayout(new GridLayout(1,4));
         JButton button = new JButton("Execute");
 
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CatalogAnalyzer catalogAnalyzer = new CatalogAnalyzer(srcDirectoryPath, dstDirectoryPath, threadAmount);
+                try {
+                    catalogAnalyzer.analysis();
+                    while (!catalogAnalyzer.isExecutorShutdown());
+                    finishedPanel();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
         executePanel.add(button);
+    }
+
+    private void finishedPanel(){
+        JLabel label = new JLabel("Process finished");
+        label.setForeground(Color.GREEN);
+        frame.add(label);
+        frame.setVisible(true);
     }
 
     private void createThreadPanel() {
@@ -78,14 +95,10 @@ public class Gui {
 
         textField.addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
+            public void keyTyped(KeyEvent e) {}
 
             @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
+            public void keyPressed(KeyEvent e) {}
 
             @Override
             public void keyReleased(KeyEvent e) {
@@ -133,37 +146,4 @@ public class Gui {
         fileChooserPanel.add(button);
         fileChooserPanel.add(selectedFolderLabel, BorderLayout.LINE_END);
     }
-
 }
-
-
-/*
-        frame = new JFrame();
-
-
-
-        JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
-        panel.setLayout(new GridLayout(0,1));
-
-        title = new JLabel("Label");
-        panel.add(title);
-
-        frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Photo-sorting-program");
-        frame.pack();
-        frame.setSize(400,250);
-        frame.setVisible(true);
-
-        // File dialog
-        fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int result = fileChooser.showOpenDialog(frame);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-        }
-
-*/

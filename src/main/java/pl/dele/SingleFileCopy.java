@@ -9,6 +9,8 @@ import java.nio.file.StandardCopyOption;
 
 public class SingleFileCopy extends Thread {
 
+    private static final String FILE_EXTENSION = ".jpg";
+
     // ścieżka źródłowa do pliku, który ma zostać skopiowany
     private final String SOURCE_FILE_PATH;
     // ściżka źródłowa do katalogu do którego ma zostać skopiowany plik
@@ -25,7 +27,7 @@ public class SingleFileCopy extends Thread {
     @Override
     public void run() {
         Path sourcePath = Paths.get(SOURCE_FILE_PATH);
-        Path copiedPath = Paths.get(DESTINATION_DIRECTORY_PATH + File.separator + number + ".jpg");
+        Path copiedPath = Paths.get(DESTINATION_DIRECTORY_PATH + File.separator + number + FILE_EXTENSION);
 
         try {
             Files.copy(sourcePath, copiedPath, StandardCopyOption.REPLACE_EXISTING);

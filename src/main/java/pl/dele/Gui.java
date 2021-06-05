@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 import java.io.File;
 
 /**
- * Obiekt o nazwie Gui umożliwiający uruchomienie programu w prostym Gui
+ * Obiekt o nazwie Gui implementujący proste GUI.
  * @author Daniel Delegacz
  */
 public class Gui {

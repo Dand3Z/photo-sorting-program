@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 /**
  * Klasa ConsoleVersionStart umożliwia uruchomienie aplikacji w wersji konsolowej (bez użycia GUI)
+ * @author Daniel Delegacz
  */
 public class ConsoleVersionStart {
 

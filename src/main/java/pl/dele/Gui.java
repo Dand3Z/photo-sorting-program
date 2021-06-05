@@ -10,6 +10,7 @@ import java.io.File;
 
 /**
  * Obiekt o nazwie Gui umożliwiający uruchomienie programu w prostym Gui
+ * @author Daniel Delegacz
  */
 public class Gui {
 

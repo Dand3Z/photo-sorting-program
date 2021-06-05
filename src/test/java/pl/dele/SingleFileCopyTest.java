@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Klasa sprawdzająca poprawność kopiowania pojedyńczego pliku przez
  * SingleFileCopy
+ * @author Daniel Delegacz
  */
 public class SingleFileCopyTest {
 

@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Klasa sprawdzajaca poprawność kopiowania całego katalogu
  * przez CatalogAnalyzer
+ * @author Daniel Delegacz
  */
 public class CatalogAnalyzerTest {
 

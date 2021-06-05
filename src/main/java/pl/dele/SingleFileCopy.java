@@ -10,6 +10,7 @@ import java.nio.file.StandardCopyOption;
 /**
  * Klasa odpowiedzialna za skopiowanie jednego pliku do katalogu docelowego.
  * Rozszerza klasę Thread.
+ * @author Daniel Delegacz
  */
 public class SingleFileCopy extends Thread {
 

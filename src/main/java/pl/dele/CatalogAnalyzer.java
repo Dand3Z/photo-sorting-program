@@ -20,6 +20,7 @@ import java.util.concurrent.Executors;
  * grupuje według daty wykonania, przenosi do katalogu nazwanego datą wykonania
  * numerując kolejno wewnątrz katalogów kolejnymi liczbami całowitymi
  * poczynając od 1.
+ * @author Daniel Delegacz
  */
 public class CatalogAnalyzer {
 

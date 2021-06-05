@@ -8,26 +8,46 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 
+/**
+ * Obiekt o nazwie Gui umożliwiający uruchomienie programu w prostym Gui
+ */
 public class Gui {
 
+    // stała przechowująca tekst Source
     public static final String SOURCE = "Source";
+    // stała przechowująca tekst Destination
     public static final String DESTINATION = "Destination";
 
+    // główny obiekt JFrame
     private JFrame frame;
+    // panel z tekstem powitalnym
     private JPanel titlePanel;
+    // panel z dwoma obiektami FileChooserPanel
     private JPanel fileChooserPanel;
+    // panel z polem tekstowym do wpisania liczby wątków
     private JPanel threadPanel;
+    // panel z przyciskiem execute
     private JPanel executePanel;
+    // panel z informacją o wykonaniu programu
     private JLabel finishedLabel;
 
+    // ścieżka do katalogu źródłowego
     private String srcDirectoryPath = null;
+    // ścieżka do katalogu docelowego
     private String dstDirectoryPath = null;
+    // liczba wykorzystywanych wątków, domyślnie 5
     private int threadAmount = 5;
 
+    /**
+     * Konstruktor tworzący okno
+     */
     public Gui() {
         createWindow();
     }
 
+    /**
+     * Główna metoda odpowiedzialna za utworzenie okna progamu
+     */
     private void createWindow() {
         frame = new JFrame("Photo-sorting-program");
         frame.setLayout(new FlowLayout());
@@ -39,19 +59,19 @@ public class Gui {
         createTitleLabel();
         frame.add(titlePanel);
 
-        // core panel
+        // panel pobierający ścieżkę źródłową i docelową
         fileChooserPanel = new JPanel();
         fileChooserPanel.setLayout(new GridLayout(2,3));
         createJFileChooser(SOURCE);
         createJFileChooser(DESTINATION);
         frame.add(fileChooserPanel);
 
-        // Thread panel
+        // panel do ustawiania ilości wątków
         threadPanel = new JPanel();
         createThreadPanel();
         frame.add(threadPanel);
 
-        // Execute panel
+        // panel odpowiedzialny za uruchominie programu
         executePanel = new JPanel();
         createExecutePanel();
         frame.add(executePanel);
@@ -60,6 +80,9 @@ public class Gui {
         frame.setVisible(true);
     }
 
+    /**
+     * Utwórz panel odpowiedzialny za uruchomienie programu
+     */
     private void createExecutePanel() {
         executePanel.setLayout(new GridLayout(1,4));
         JButton button = new JButton("Execute");
@@ -77,10 +100,12 @@ public class Gui {
                 }
             }
         });
-
         executePanel.add(button);
     }
 
+    /**
+     * Utwórz panel z informacją o zakończeniu programu
+     */
     private void finishedPanel(){
         if (finishedLabel == null) {
             finishedLabel = new JLabel("Process finished");
@@ -90,6 +115,9 @@ public class Gui {
         frame.setVisible(true);
     }
 
+    /**
+     * Utwórz panel umożliwiający wpisanie liczby wątków
+     */
     private void createThreadPanel() {
         JLabel label = new JLabel("Number of threads:");
         JTextField textField = new JTextField(3);
@@ -114,17 +142,22 @@ public class Gui {
                 } catch (NumberFormatException ex) {ex.getMessage();}
             }
         });
-
         threadPanel.add(label);
         threadPanel.add(textField);
     }
 
+    /**
+     * Utwórz tytułowy label
+     */
     private void createTitleLabel() {
         JLabel titleLabel = new JLabel("A program for sorting photos by the date they were taken ");
-        //titleLabel.setBounds(0, 10, 100,10);
         titlePanel.add(titleLabel);
     }
 
+    /**
+     * Utwórz JFileChooser
+     * @param kind
+     */
     private void createJFileChooser(String kind) {
 
         JLabel kindLabel = new JLabel(kind +" directory: ");

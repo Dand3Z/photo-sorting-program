@@ -7,8 +7,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+/**
+ * Klasa odpowiedzialna za skopiowanie jednego pliku do katalogu docelowego.
+ * Rozszerza klasę Thread.
+ */
 public class SingleFileCopy extends Thread {
 
+    // stała przechowująca rozszerzenie pliku
     private static final String FILE_EXTENSION = ".jpg";
 
     // ścieżka źródłowa do pliku, który ma zostać skopiowany
@@ -18,12 +23,22 @@ public class SingleFileCopy extends Thread {
     // numer pliku w katalogu
     private final int number;
 
+    /**
+     * Konstruktor ustawiający ścieżkę do pliku źródłowego, katalogu docelowego i numer pliku
+     * @param SOURCE_FILE_PATH
+     * @param DESTINATION_DIRECTORY_PATH
+     * @param number
+     */
     public SingleFileCopy(String SOURCE_FILE_PATH, String DESTINATION_DIRECTORY_PATH, int number){
         this.SOURCE_FILE_PATH = SOURCE_FILE_PATH;
         this.DESTINATION_DIRECTORY_PATH = DESTINATION_DIRECTORY_PATH;
         this.number = number;
     }
 
+    /**
+     * Nadpisana metoda run z klasy Thread.
+     * Metoda odpowiada za skopiowanie pliku z katalogu źródłowego do katalogu docelowego.
+     */
     @Override
     public void run() {
         Path sourcePath = Paths.get(SOURCE_FILE_PATH);

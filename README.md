@@ -10,4 +10,5 @@ We also determine the number of threads. Each photo is copied in a separate thre
 Folders are named in the format "year-month-day". 
 The files in the folders are numbered with consecutive integers starting from 1 (1,2,3, ...).
 
-
+## Screenshots
+![initial-game-img](/screenshots/gui-img.png?raw=true "GUI Image")

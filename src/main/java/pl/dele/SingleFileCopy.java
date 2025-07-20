@@ -11,11 +11,8 @@ public class SingleFileCopy extends Thread {
 
     private static final String FILE_EXTENSION = ".jpg";
 
-    // ścieżka źródłowa do pliku, który ma zostać skopiowany
     private final String SOURCE_FILE_PATH;
-    // ściżka źródłowa do katalogu do którego ma zostać skopiowany plik
     private final String DESTINATION_DIRECTORY_PATH;
-    // numer pliku w katalogu
     private final int number;
 
     public SingleFileCopy(String SOURCE_FILE_PATH, String DESTINATION_DIRECTORY_PATH, int number){

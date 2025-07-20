@@ -54,7 +54,6 @@ public class CatalogAnalyzer {
                 date = formatter.format( time.toInstant() );
             } catch (IOException e) { e.getMessage(); }
 
-            // creating directories
             File fileDestination = new File(DST_CATALOG_PATH + SEPARATOR + date);
             if (!datesCountMap.containsKey(date)) {
                 datesCountMap.put(date, 1);

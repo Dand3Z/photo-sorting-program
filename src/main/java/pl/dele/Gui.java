@@ -39,19 +39,16 @@ public class Gui {
         createTitleLabel();
         frame.add(titlePanel);
 
-        // core panel
         fileChooserPanel = new JPanel();
         fileChooserPanel.setLayout(new GridLayout(2,3));
         createJFileChooser(SOURCE);
         createJFileChooser(DESTINATION);
         frame.add(fileChooserPanel);
 
-        // Thread panel
         threadPanel = new JPanel();
         createThreadPanel();
         frame.add(threadPanel);
 
-        // Execute panel
         executePanel = new JPanel();
         createExecutePanel();
         frame.add(executePanel);
@@ -121,7 +118,6 @@ public class Gui {
 
     private void createTitleLabel() {
         JLabel titleLabel = new JLabel("A program for sorting photos by the date they were taken ");
-        //titleLabel.setBounds(0, 10, 100,10);
         titlePanel.add(titleLabel);
     }
 
